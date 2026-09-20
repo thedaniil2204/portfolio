@@ -1,9 +1,11 @@
-import { Block } from './Block';
+import { CircleItem } from './CircleItem';
 
 export function Header() {
   return (
-    <header>
-      <Block />
+    <header className="header">
+      <CircleItem label="фото" />
+      <CircleItem label="прога" />
+      <CircleItem label="дизайн" />
     </header>
   );
 }
