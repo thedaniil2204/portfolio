@@ -1,6 +1,6 @@
 :root {
-  color: #1d1d1f;
-  background: #ffffff;
+  color: #f5f5f5;
+  background: #151515;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
@@ -13,16 +13,18 @@
   box-sizing: border-box;
 }
 
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-}
-
 html,
 body,
 #root {
+  width: 100%;
   height: 100%;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow: hidden;
+  background: #151515;
 }
 
 a {
@@ -30,221 +32,298 @@ a {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+}
+
 .app {
   display: flex;
-  flex-direction: column;
-  width: min(1120px, calc(100% - 32px));
-  min-height: 100dvh;
-  margin: 0 auto;
-  padding: 24px 0 56px;
+  justify-content: center;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: #151515;
+}
+
+.screenColumn {
+  width: min(100vw, 430px);
+  height: 100dvh;
+}
+
+.deviceLabel {
+  display: none;
+}
+
+.phoneScreen {
+  --header-height: clamp(205px, 34dvh, 287px);
+
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #111111;
 }
 
 .header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: clamp(28px, 7vw, 70px);
-  padding: 48px 0 64px;
+  position: relative;
+  height: var(--header-height);
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(70px, 11dvh, 92px) 22px 0;
 }
 
-.logo {
-  font-size: 18px;
-  font-weight: 700;
+.header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: clamp(88px, 14dvh, 118px);
+  background: linear-gradient(180deg, transparent, #111111 86%);
+  pointer-events: none;
 }
 
-.nav {
-  display: flex;
-  gap: 18px;
-  color: #4f5965;
-  font-size: 15px;
-}
-
-.nav a:hover {
-  color: #1d1d1f;
-}
-
-.hero {
-  display: grid;
-  align-content: center;
-  min-height: 58vh;
-  padding: 56px 0;
-}
-
-.eyebrow {
-  margin: 0 0 14px;
-  color: #2c7a7b;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  max-width: 760px;
-  margin-bottom: 18px;
-  font-size: clamp(44px, 9vw, 96px);
-  line-height: 0.95;
-}
-
-h2 {
-  margin-bottom: 18px;
-  font-size: 28px;
-}
-
-.heroText {
-  max-width: 620px;
-  margin-bottom: 28px;
-  color: #4f5965;
-  font-size: 20px;
-  line-height: 1.55;
-}
-
-.primaryLink {
-  width: fit-content;
-  border: 1px solid #1d1d1f;
-  border-radius: 6px;
-  padding: 12px 18px;
-  font-weight: 700;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease;
-}
-
-.primaryLink:hover {
-  color: #ffffff;
-  background: #1d1d1f;
-}
-
-.section {
-  padding-top: 28px;
-}
-
-.skillList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.skillList li {
-  border: 1px solid #d8ddd4;
-  border-radius: 8px;
-  padding: 18px;
-  background: #ffffff;
-  font-weight: 700;
-}
-
-.portfolioSection {
+.headerImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  padding: 48px 0 64px;
-  background: #ffffff;
+  height: calc(var(--header-height) - 30px);
+  object-fit: cover;
+  opacity: 0.88;
 }
 
-.circleRow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: clamp(28px, 7vw, 70px);
+.languageButton {
+  position: absolute;
+  top: clamp(14px, 2.2dvh, 18px);
+  right: 18px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border: 0;
+  border-radius: 50%;
+  color: #f0f0f0;
+  background: rgba(140, 140, 140, 0.74);
+  font-size: 35px;
+  line-height: 1;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.heroTitle {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(29px, 8.4vw, 33px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.heroTitleItalic {
+  font-style: italic;
+}
+
+.heroSubtitle {
+  margin: clamp(14px, 2.8dvh, 24px) 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(18px, 5.4vw, 21px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.sectionNav {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: clamp(18px, 12vw, 54px);
+  margin-top: clamp(28px, 5.2dvh, 44px);
 }
 
 .circleItem {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 34px;
-}
-
-.imageCircle {
-  width: clamp(92px, 18vw, 170px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #000000;
+  justify-content: center;
 }
 
 .labelPill {
-  min-width: 106px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(74px, 22vw, 83px);
+  height: clamp(40px, 5.6dvh, 47px);
   border-radius: 999px;
-  padding: 12px 22px;
-  background: #000000;
-  color: #ffffff;
-  font-size: clamp(22px, 4vw, 30px);
+  padding: 0 15px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(118, 118, 118, 0.78);
+  font-size: clamp(17px, 5vw, 20px);
+  font-weight: 400;
   line-height: 1;
-  text-align: center;
+  white-space: nowrap;
+}
+
+.circleItemActive .labelPill {
+  min-width: clamp(92px, 28vw, 106px);
+  color: #ffffff;
+  background: #b9b9b9;
+  font-size: clamp(20px, 5.8vw, 23px);
+}
+
+.screenBody {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - var(--header-height));
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(12px, 2dvh, 18px) 23px clamp(18px, 3.5dvh, 30px);
+}
+
+.contentBlock {
+  margin-top: clamp(18px, 3.8dvh, 32px);
+}
+
+.sectionTitle {
+  margin: 0 0 13px;
+  color: #ffffff;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(7px, 1.2dvh, 10px) 12px;
+  padding: clamp(8px, 1.5dvh, 12px);
+  background: #070b10;
+}
+
+.techItem {
+  --accent: #00aaff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: clamp(34px, 4.8dvh, 40px);
+  overflow: hidden;
+  padding: 7px 24px 7px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04),
+      color-mix(in srgb, var(--accent) 35%, transparent)
+    );
+}
+
+.techItem::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  background: var(--accent);
+}
+
+.techIcon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.techName {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 9px;
+  line-height: 1;
+}
+
+.masonryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: clamp(46px, 7.8dvh, 65px);
+  gap: 7px;
+  margin: clamp(22px, 4.4dvh, 37px) 15px 0;
+}
+
+.photoTile {
+  border-radius: 5px;
+  background: #353535;
+}
+
+.photoTileLarge {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.photoTileSmall,
+.photoTileMini,
+.photoTileShort {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.photoTileMedium,
+.photoTileTall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.photoTileWide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.contacts {
+  margin-top: auto;
+  padding-top: clamp(22px, 5dvh, 42px);
+}
+
+.contactBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #777777, #1f1f1f 78%, #111111);
+}
+
+.contactBar a {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(18px, 5.3vw, 21px);
+  font-weight: 300;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .infoBlock {
   flex: 1;
-  width: min(100%, 920px);
   min-height: 0;
-  margin: 26px auto 0;
   border-radius: 38px;
   background: #000000;
 }
 
 @media (max-width: 640px) {
-  body {
-    overflow: hidden;
-  }
-
-  .app {
-    width: min(100% - 28px, 520px);
-    height: 100dvh;
-    min-height: 0;
-    padding: 22px 0 26px;
+  .screenColumn {
+    width: 100vw;
   }
 
   .header {
-    flex-direction: row;
-    gap: clamp(14px, 6vw, 28px);
-    padding: 20px 0 18px;
+    padding-inline: 20px;
   }
 
-  .portfolioSection {
-    padding: 20px 0 18px;
-  }
-
-  .hero {
-    min-height: auto;
-    padding: 44px 0;
-  }
-
-  .heroText {
-    font-size: 17px;
-  }
-
-  .circleRow {
-    gap: clamp(14px, 6vw, 28px);
-  }
-
-  .circleItem {
-    gap: 16px;
-  }
-
-  .imageCircle {
-    width: clamp(74px, 24vw, 92px);
-  }
-
-  .labelPill {
-    min-width: 82px;
-    padding: 10px 14px;
-    font-size: 20px;
-  }
-
-  .infoBlock {
-    min-height: 0;
-    margin-top: 26px;
-    border-width: 4px;
-    border-radius: 28px;
+  .screenBody {
+    padding-inline: 23px;
   }
 }
-
-

@@ -1,11 +1,12 @@
 type CircleItemProps = {
-  label : string
-}
+  label: string;
+  isActive?: boolean;
+};
 
-export function CircleItem({label} : CircleItemProps) {
+export function CircleItem({ label, isActive = false }: CircleItemProps) {
   return (
-    <article className="circleItem">
+    <span className={isActive ? 'circleItem circleItemActive' : 'circleItem'}>
       <span className="labelPill">{label}</span>
-    </article>
+    </span>
   );
 }

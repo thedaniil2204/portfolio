@@ -1,11 +1,11 @@
-import { Header } from './components/Header';
-import { InfoBlock } from './components/InfoBlock';
+import { CodeSection } from './components/CodeSection';
+import { PhotoSection } from './components/PhotoSection';
+import { MotionSection } from './components/MotionSection';
 
 export default function App() {
   return (
     <main className="app">
-      <Header />
-      <InfoBlock />
+      <PhotoSection/>
     </main>
   );
 }

@@ -1,17 +1,15 @@
-import React from 'react'
-import { CircleItem } from './CircleItem'
+import { CircleItem } from './CircleItem';
 
-type Section = {
-    activeSection: 'code' | 'motion' | 'photo'
-    setactiveSection: (section: 'code' | 'motion' | 'photo') => void 
-}
+type NavigationProps = {
+  activeSection: 'code' | 'motion' | 'photo';
+};
 
-export const Navigation = ({activeSection, setactiveSection}: Section) => {
+export function Navigation({ activeSection }: NavigationProps) {
   return (
-    <div>
-        <CircleItem label="фото" />
-        <CircleItem label="прога" />
-        <CircleItem label="дизайн" />
-    </div>
-  )
+    <nav className="sectionNav" aria-label="Разделы портфолио">
+      <CircleItem label="photo" isActive={activeSection === 'photo'} />
+      <CircleItem label="code" isActive={activeSection === 'code'} />
+      <CircleItem label="design" isActive={activeSection === 'motion'} />
+    </nav>
+  );
 }
