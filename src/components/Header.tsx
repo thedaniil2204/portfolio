@@ -22,8 +22,7 @@ export function Header({ activeSection, backgroundImage, title, subtitle, titleM
         </h1>
         {subtitle ? <p className="heroSubtitle">{subtitle}</p> : null}
       </div>
-
-      <Navigation activeSection={activeSection} />
+      <Navigation activeSection={activeSection}/>
     </header>
   );
 }

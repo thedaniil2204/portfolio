@@ -4,7 +4,11 @@ import { Header } from './Header';
 import { ScreenFrame } from './ScreenFrame';
 import { TechList } from './TechList';
 
-export function CodeSection() {
+type NavigationChange = {
+  setActiveSection: (section: 'code' | 'motion' | 'photo') => void 
+}
+
+export function CodeSection(setActiveSection: NavigationChange) {
   return (
     <ScreenFrame label="iPhone 14 & 15 Pro - 3">
       <Header
